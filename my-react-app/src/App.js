@@ -30,11 +30,12 @@ function PackingList() {
   return (
     <ul className="list">
       {initialItems.map((item) => (
-        <Item item={item} />
+        <Item key={item.id} item={item} />
       ))}
     </ul>
   );
 }
+
 function Item({ item }) {
   return <li>{item.description}</li>;
 }
@@ -43,8 +44,7 @@ function Stats() {
   return (
     <footer className="stats">
       <em>
-        🎒 You have X items on your list, and you already packed X
-        (X%)
+        🎒 You have {initialItems.length} items on your list, and you already packed {initialItems.filter(item => item.packed).length} ({Math.round((initialItems.filter(item => item.packed).length / initialItems.length) * 100)}%)
       </em>
     </footer>
   );
